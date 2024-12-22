@@ -1,5 +1,11 @@
-body{
-    background-color:  #fffdf6;
+.background{
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background:  linear-gradient(0deg, #ff65cc, #4b2b96);
+    z-index: -1;
 }
 
 .welcome{
@@ -7,7 +13,7 @@ body{
     font-family: "Lexend Deca", serif;
     font-optical-sizing: auto;
     font-weight: 100;
-    color: #09081a;
+    color: #ffffcd;
 }
 
 .Nblend{
@@ -22,7 +28,7 @@ body{
 }
 
 .div{
-    padding-top: 40px;
+    padding-top: 30px;
     justify-self: center;
 }
 
@@ -31,10 +37,10 @@ body{
 }
 
 .pfp{
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    border: solid 3px #09081a;
+    border: solid 3px #ffffcd;
 }
 
 .spacer{
@@ -50,7 +56,7 @@ body{
     font-weight: 400;
     font-style: normal;
     text-decoration: none;
-    color: #09081a;
+    color: #ffffcd;
     margin-bottom: 28px;
 }
 
