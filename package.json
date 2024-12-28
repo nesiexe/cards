@@ -1,0 +1,17 @@
+{
+  "name": "cards",
+  "version": "1.5.0",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "NesiEXE",
+  "license": "MIT",
+  "description": "just a simple website to display my socials. Made with Vite.",
+  "dependencies": {
+    "vite": "^6.0.6"
+  }
+}
