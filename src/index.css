@@ -1,3 +1,6 @@
+body{
+  display: grid;
+}
 .background{
     left: 0;
     bottom: 0;
@@ -20,7 +23,7 @@
     color: #ffffcd;
   }
   
-  .Nblend{
+  .gradient{
     font-family: "Lexend Deca", serif;
     font-optical-sizing: auto;
     font-weight: 600;
@@ -32,14 +35,16 @@
     -webkit-text-fill-color: transparent
   }
   
-  .div{
+  .pfp-container{
     padding-top: 6%;
     -ms-grid-column-align: center;
     justify-self: center;
+    justify-content: center;
   }
   
   .center{
     -ms-grid-column-align: center;
+    justify-content: center;
     justify-self: center;
   }
   
@@ -65,13 +70,24 @@
     color: #ffffcd;
     margin-bottom: 28px;
   }
-  
+  .text-big{
+    -ms-grid-column-align: center;
+    justify-self: center;
+    font-family: "Lexend Deca", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 100%;
+    text-decoration: none;
+    color: #09081a;
+  }
+
   .text{
     -ms-grid-column-align: center;
     justify-self: center;
     font-family: "Lexend Deca", serif;
     font-optical-sizing: auto;
-    font-weight: 800;
+    font-weight: normal;
     font-style: normal;
     text-decoration: none;
     color: #09081a;
@@ -79,14 +95,15 @@
   
   .text-bottom{
     -ms-grid-column-align: center;
-    justify-self: center;
     position: absolute;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    width: fit-content;
     bottom: 30px;
-    left: 0px;
-    right: 0px;
     font-family: "Lexend Deca", serif;
     font-optical-sizing: auto;
-    font-weight: 800;
+    font-weight: bold;
     font-style: normal;
     font-size: 120%;
     text-decoration: none;
