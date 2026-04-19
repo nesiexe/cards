@@ -166,6 +166,7 @@ footer {
 }
 
 .now-playing {
+  padding-top: clamp(5px, 2%, 10px);
   position: relative;
   -ms-grid-column-align: center;
   justify-self: center;
@@ -181,16 +182,17 @@ footer {
   text-decoration: none;
   color: #ffffcd;
   text-shadow: 0px 0px 20px #000000;
+  padding-bottom: clamp(5px, 2%, 10px);
 }
 
-.text-small {
+.bio {
   -ms-grid-column-align: center;
   justify-self: center;
   font-family: "Lexend Deca", serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-size: clamp(80%, 4vw, 150%);
+  font-size: clamp(85%, 3vw, 190%);
   width: clamp(150px, 80%, 700px);
   text-decoration: none;
   color: #ffffcd;
@@ -204,7 +206,7 @@ footer {
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
-  font-size: clamp(100%, 4vw, 140%);
+  font-size: clamp(100%, 4vw, 180%);
   text-decoration: none;
   color: #09081a;
 }
@@ -216,7 +218,7 @@ footer {
   font-optical-sizing: auto;
   font-weight: normal;
   font-style: normal;
-  font-size: clamp(60%, 4vw, 140%);
+  font-size: clamp(60%, 4vw, 180%);
   text-decoration: none;
   color: #09081a;
 }
@@ -293,7 +295,7 @@ footer {
 
 .toast {
   position: fixed;
-  bottom: -60px;
+  top: -60px;
   transform: translateX(-50%);
   left: 50%;
   background: #9e95f4;
@@ -304,7 +306,7 @@ footer {
   border-radius: 12px;
   border: 2px solid #09081a;
   box-shadow: 4px 4px 0px #09081a;
-  transition: bottom 0.3s ease;
+  transition: top 0.3s ease;
   white-space: nowrap;
   z-index: 9999;
 }

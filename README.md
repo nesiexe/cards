@@ -2,8 +2,9 @@
 just a simple website to display my socials.
 Made with Vite.
 
-<h2>Needed:</h2>
+<h2>what is needed:</h2>
 <p>Node.js</p>
+<p>Vite</p>
 <h1>1. Intaling Vite</h1>
 <p>run <code>npm install -D vite</code></p>
 <h1>2. Developing</h1>

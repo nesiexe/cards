@@ -48,6 +48,18 @@ async function updateNowPlaying() {
   }
 }
 
+function fetchDiscord() {
+  const btn = document.getElementById("discord-btn");
+  btn.addEventListener("click", () => {
+    navigator.clipboard.writeText("@nesiexe");
+    const toast = document.getElementById("toast");
+    toast.style.top = "32px";
+    setTimeout(() => {
+      toast.style.top = "-60px";
+    }, 2000);
+  });
+}
+
 async function fetchPfp() {
   const p = document.getElementById("pfp");
 
@@ -62,4 +74,5 @@ async function fetchPfp() {
 fetchPfp();
 updateNowPlaying();
 setInterval(updateNowPlaying, 10000);
+fetchDiscord();
 
