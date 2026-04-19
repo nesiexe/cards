@@ -291,6 +291,24 @@ footer {
   outline: 0;
 }
 
+.toast {
+  position: fixed;
+  bottom: -60px;
+  transform: translateX(-50%);
+  left: 50%;
+  background: #9e95f4;
+  color: #09081a;
+  font-family: 'Lexend Deca', serif;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 12px;
+  border: 2px solid #09081a;
+  box-shadow: 4px 4px 0px #09081a;
+  transition: bottom 0.3s ease;
+  white-space: nowrap;
+  z-index: 9999;
+}
+
 @media (min-width:320px)  { .desktop { display: none; } }
 @media (min-width:481px)  { .desktop { display: none; }}
 @media (min-width:641px)  { .mobile { display: none; } }

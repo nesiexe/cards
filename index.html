@@ -31,14 +31,21 @@
       <a class="button text spacer" href="https://nesiexe.xyz">Nesi's Site<div class="mobile" style="margin-left: 5px;">[ PC ONLY :3 ]</div></a>
       <a class="button text spacer" href="https://x.com/nesiexe">Twitter</a>
       <button onclick="Copy()" class="button text-big spacer">Discord: @nesiexe</button>
+      <div id="toast" class="toast">Copied usertag!</div>
       <script>
         function Copy() {
           navigator.clipboard.writeText("@nesiexe");
+          const toast = document.getElementById("toast");
+          toast.style.bottom = "32px";
+          setTimeout(() => {
+            toast.style.bottom = "-60px";
+          }, 2000);
         }
       </script>
       <a class="button text spacer" href="https://t.me/Nesixyz">Telegram</a>
       <a class="button text spacer" href="https://steamcommunity.com/id/NesiEXE/">Steam</a>
       <a class="button text spacer" href="https://github.com/nesiexe">GitHub</a>
+      
     </main>
     <footer>
       <div class="text-bottom"><a>:3 powered</a></div>
