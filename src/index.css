@@ -143,8 +143,25 @@ footer {
   object-fit: cover;
   opacity: 0.6;
   z-index: -1;
-  border: none;
+  border-radius: 20px;
   filter: blur(3px);
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.album-art:after {
+  content: "";
+  border-radius: 20px;
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .now-playing-green {
