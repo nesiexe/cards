@@ -75,8 +75,8 @@ footer {
 }
 
 .pfp {
-  width: clamp(80px, 30vw, 200px);
-  height: clamp(80px, 30vw, 200px);
+  width: clamp(50px, 20vw, 150px);
+  height: clamp(50px, 20vw, 150px);
   border-radius: 50%;
   border: solid 3px #ffffcd;
   user-drag: none;
@@ -109,6 +109,9 @@ footer {
 }
 
 .now-playing-container {
+  padding-top: clamp(2px, 1%, 7px);
+  padding-bottom: clamp(2px, 1%, 7px);
+  scale: clamp(40%, 100%, 120%);
   position: relative;
   z-index: 1;
   display: flex;
@@ -117,7 +120,7 @@ footer {
   gap: 6px;
   text-align: center;
   overflow: hidden;
-  padding: 15px 24px; 
+  padding: 14px 24px; 
   border-radius: 20px;
   box-shadow: 0 0 20px 6px #ffffcd8a;
 }
@@ -183,7 +186,6 @@ footer {
 }
 
 .now-playing {
-  padding-top: clamp(5px, 2%, 10px);
   position: relative;
   -ms-grid-column-align: center;
   justify-self: center;
@@ -199,7 +201,6 @@ footer {
   text-decoration: none;
   color: #ffffcd;
   text-shadow: 0px 0px 20px #000000;
-  padding-bottom: clamp(5px, 2%, 10px);
 }
 
 .bio {
@@ -213,7 +214,6 @@ footer {
   width: clamp(150px, 80%, 700px);
   text-decoration: none;
   color: #ffffcd;
-  margin-bottom: 28px;
 }
 
 .text-big {
