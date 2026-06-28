@@ -206,6 +206,11 @@ footer {
 .bio {
   -ms-grid-column-align: center;
   justify-self: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25em;
   font-family: "Lexend Deca", serif;
   font-optical-sizing: auto;
   font-weight: 400;
