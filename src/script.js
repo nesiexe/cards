@@ -20,7 +20,7 @@ function clearEl(el) {
 }
 
 async function updateNowPlaying() {
-  const res = await fetch("https://nesiexe.xyz/api/now-playing");
+  const res = await fetch("https://api.nesiexe.xyz/api/now-playing");
   const data = await res.json();
   const el = document.getElementById("now-playing");
 
