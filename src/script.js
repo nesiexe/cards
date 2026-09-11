@@ -30,14 +30,14 @@ async function updateNowPlaying() {
     el.appendChild(
       div([
         div("I'm listening to"),
-        link(`${data.artist} - ${data.track}`, {
+        link(`${data.track} - ${data.artist}`, {
           className: "now-playing-green",
           href: data.url
         }),
         div("right now on spotify :3"),
         img("", {
           src: data.albumArt,
-          alt: `${data.artist} - ${data.track}`,
+          alt: `${data.track} - ${data.artist}`,
           className: "album-art"
         }),
       ], { className: "now-playing-container" })
