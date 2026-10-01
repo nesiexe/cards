@@ -1,96 +1,129 @@
-function nodeFactory(node) {
-  return function(children, props) {
-    if(!Array.isArray(children)) children = [children];
-    const el = document.createElement(node);
-    if (props) Object.assign(el, props);
-    for(const child of children) {
-      if(!child) continue;
-      el.appendChild(typeof child === "object" ? child : document.createTextNode("" + child));
-    }
-    return el;
+const byId = (id) => document.getElementById(id);
+const musicEndpoint = import.meta.env.DEV
+  ? "/api/now-playing"
+  : "https://api.nesiexe.xyz/api/now-playing";
+const musicMessage = byId("music-message");
+const trackDetails = byId("track-details");
+const trackLink = byId("track-link");
+const trackArtist = byId("track-artist");
+const albumArt = byId("album-art");
+const albumBackground = byId("album-background");
+const musicPlaceholder = byId("music-placeholder");
+let previousTrack = "";
+
+function safeWebUrl(value) {
+  try {
+    const url = new URL(value);
+    return ["https:", "http:"].includes(url.protocol) ? url.href : null;
+  } catch {
+    return null;
   }
 }
 
-const div = nodeFactory("div");
-const link = nodeFactory("a");
-const img = nodeFactory("img");
+function clearArtwork() {
+  albumArt.hidden = true;
+  albumBackground.hidden = true;
+  albumArt.removeAttribute("src");
+  albumBackground.removeAttribute("src");
+  musicPlaceholder.hidden = false;
+}
 
-function clearEl(el) {
-  el.textContent = "";
+albumArt.addEventListener("error", clearArtwork);
+
+function showMusicMessage(message) {
+  previousTrack = "";
+  trackDetails.hidden = true;
+  musicMessage.hidden = false;
+  if (musicMessage.textContent !== message) musicMessage.textContent = message;
+  trackLink.removeAttribute("href");
+  clearArtwork();
 }
 
 async function updateNowPlaying() {
-  const res = await fetch("https://api.nesiexe.xyz/api/now-playing");
-  const data = await res.json();
-  const el = document.getElementById("now-playing");
+  try {
+    const response = await fetch(musicEndpoint, {
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!response.ok) throw new Error("Music feed unavailable");
+    const data = await response.json();
+    if (!data || typeof data.isPlaying !== "boolean") throw new Error("Invalid music feed");
+    if (!data.isPlaying) {
+      showMusicMessage("I'm not listening to anything right now :c");
+      return;
+    }
+    if (typeof data.track !== "string" || typeof data.artist !== "string") {
+      throw new Error("Missing track details");
+    }
 
-  if (data.isPlaying) {
-    clearEl(el);
+    // Keep the same DOM and focus between polls; only announce changed tracks.
+    const track = JSON.stringify([data.track, data.artist, data.url, data.albumArt]);
+    if (track === previousTrack) return;
+    previousTrack = track;
+    trackLink.textContent = data.track;
+    trackArtist.textContent = data.artist;
+    const trackUrl = safeWebUrl(data.url);
+    if (trackUrl) trackLink.href = trackUrl;
+    else trackLink.removeAttribute("href");
 
-    el.appendChild(
-      div([
-        div("I'm listening to"),
-        link(`${data.track} - ${data.artist}`, {
-          className: "now-playing-green",
-          href: data.url
-        }),
-        div("right now on spotify :3"),
-        img("", {
-          src: data.albumArt,
-          alt: `${data.track} - ${data.artist}`,
-          className: "album-art"
-        }),
-      ], { className: "now-playing-container" })
-    );
-  } else {
-    clearEl(el);
-    el.appendChild(div("I'm not listening to anything right now :c", { className: "nothing-playing" }));
+    clearArtwork();
+    const artUrl = safeWebUrl(data.albumArt);
+    if (artUrl) {
+      albumArt.src = artUrl;
+      albumBackground.src = artUrl;
+      albumArt.hidden = false;
+      albumBackground.hidden = false;
+      musicPlaceholder.hidden = true;
+    }
+    musicMessage.hidden = true;
+    trackDetails.hidden = false;
+  } catch {
+    showMusicMessage("Can't check the music right now. I'll try again soon.");
+  } finally {
+    // Schedule after completion so slow requests never overlap.
+    window.setTimeout(updateNowPlaying, 10000);
   }
 }
 
-function fetchDiscord() {
-  const btn = document.getElementById("discord-btn");
-  btn.addEventListener("click", () => {
-    navigator.clipboard.writeText("@nesiexe");
-    const toast = document.getElementById("toast");
-    toast.style.top = "32px";
-    setTimeout(() => {
-      toast.style.top = "-60px";
-    }, 2000);
-  });
+let toastTimeout;
+function showToast(message) {
+  const toast = byId("toast");
+  window.clearTimeout(toastTimeout);
+  toast.textContent = message;
+  toast.dataset.visible = "true";
+  toastTimeout = window.setTimeout(() => {
+    toast.dataset.visible = "false";
+    toast.textContent = "";
+  }, 4000);
 }
 
-async function fetchPfp() {
-  const p = document.getElementById("pfp");
+byId("discord-btn").addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText("@nesiexe");
+    showToast("Copied usertag!");
+  } catch {
+    showToast("Couldn't copy. My Discord is @nesiexe.");
+  }
+});
 
-  p.addEventListener("click", () => {
-    p.classList.add("rot");
-    setTimeout(() => {
-      p.classList.remove("rot");
-    }, 1000);
-  });
-}
+const profile = byId("pfp");
+byId("profile-btn").addEventListener("click", () => {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  profile.classList.add("motion-safe:animate-profile-spin");
+});
+profile.addEventListener("animationend", () => {
+  profile.classList.remove("motion-safe:animate-profile-spin");
+});
 
 function updateAge() {
   const birthDate = new Date(2006, 11, 9);
   const today = new Date();
   let age = today.getFullYear() - birthDate.getFullYear();
-  const monthDiff = today.getMonth() - birthDate.getMonth();
-  const dayDiff = today.getDate() - birthDate.getDate();
-
-  if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+  if (today.getMonth() < birthDate.getMonth() ||
+      (today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate())) {
     age--;
   }
-
-  const ageEl = document.getElementById("age");
-  if (ageEl) {
-    ageEl.textContent = age;
-  }
+  byId("age").textContent = age;
 }
 
-fetchPfp();
-updateNowPlaying();
 updateAge();
-setInterval(updateNowPlaying, 10000);
-fetchDiscord();
-
+updateNowPlaying();

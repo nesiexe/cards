@@ -16,31 +16,58 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lexend+Deca">
     <link rel="stylesheet" href="/src/index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="public/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <title>NesiEXE :3</title>
   </head>
-  <body>
-    <main class="center">
-      <div class="pfp-container center">
-        <img class="pfp" id="pfp" src="public/nesi.png" alt="NesiEXE's Profile Picture">
-      </div>
-      <h1 class="welcome spacer">Hi! I'm Nesi<span class="gradient">EXE</span></h1>
-      <div id="now-playing" class="now-playing">Loading...</div>
-      <p class="bio"><span id="age">:3</span> / gay / Networking nerd / sily / hug friendly</p>
-      
-      <a class="button text spacer" href="https://nesiexe.xyz">Nesi's Site</a>
-      <a class="button text spacer" href="https://x.com/nesiexe">Twitter</a>
-      <button id="discord-btn" class="button text-big spacer">Discord: @nesiexe</button>
-      <div id="toast" class="toast">Copied usertag!</div>
-      <a class="button text spacer" href="https://t.me/NesiEXE">Telegram</a>
-      <a class="button text spacer" href="https://barq.app/@nesi">Barq!</a>
-      <a class="button text spacer" href="https://steamcommunity.com/id/NesiEXE/">Steam</a>
-      <a class="button text spacer" href="https://github.com/nesiexe">GitHub</a>
-      
-    </main>
-    <footer>
-      <div class="text-bottom"><a>:3 powered</a></div>
-    </footer>
+  <body class="min-h-dvh bg-[#ff65cc] bg-linear-to-t from-[#ff65cc] to-[#4b2b96] bg-fixed font-sans text-cream antialiased">
+    <a href="#links" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-cream focus:p-3 focus:text-ink">Skip to social links</a>
+    <div class="mx-auto flex min-h-dvh w-full max-w-lg flex-col px-5 sm:px-8 lg:max-w-[40rem]">
+      <main class="flex w-full flex-1 flex-col items-center gap-5 pt-6 pb-7 sm:pt-8 lg:gap-6 lg:pt-10">
+        <header class="flex flex-col items-center gap-3 text-center lg:gap-4">
+          <button id="profile-btn" type="button" aria-label="Spin Nesi's profile picture" class="cursor-pointer rounded-full focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-cream">
+            <img class="size-20 select-none rounded-full border-3 border-cream object-cover sm:size-24 lg:size-28" id="pfp" src="/nesi.png" alt="NesiEXE's profile picture" width="96" height="96" draggable="false">
+          </button>
+          <h1 class="text-2xl leading-tight font-light sm:text-3xl lg:text-4xl">Hi! I'm Nesi<span class="bg-linear-to-l from-[#b0a6ff] to-mint bg-clip-text font-semibold text-transparent">EXE</span></h1>
+        </header>
+        
+        <p class="max-w-sm text-center text-sm leading-relaxed text-cream sm:text-base lg:max-w-lg lg:text-lg"><span id="age">:3</span> / gay / Networking nerd / sily / hug friendly</p>
+        
+        <section id="now-playing" aria-labelledby="music-heading" class="relative isolate w-full max-w-sm overflow-hidden rounded-xl border border-cream/30 bg-ink/90 p-3 mx-8 shadow-[0_0_18px_0_#ffffcd26] lg:max-w-md lg:p-3.5">
+          <img id="album-background" alt="" aria-hidden="true" hidden class="absolute inset-0 -z-10 size-full scale-110 object-cover opacity-20 blur-md" draggable="false">
+          <div class="flex items-center gap-3 lg:gap-4">
+            <div class="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-white/15 bg-white/10 lg:size-14">
+              <span id="music-placeholder" aria-hidden="true" class="text-2xl text-mint">♫</span>
+              <img id="album-art" alt="" hidden class="size-full object-cover" width="48" height="48" draggable="false">
+            </div>
+            <div class="min-w-0 flex-1">
+              <h2 id="music-heading" class="mb-1 text-[0.6875rem] font-medium tracking-widest text-mint uppercase lg:text-xs">Now playing</h2>
+              <div id="music-status" role="status" aria-live="polite" aria-atomic="true">
+                <p id="music-message" class="text-sm leading-snug lg:text-base">Checking what I'm listening to…</p>
+                <div id="track-details" hidden>
+                  <a id="track-link" class="block rounded-sm text-sm leading-snug font-semibold wrap-anywhere underline decoration-mint/50 underline-offset-4 hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-mint lg:text-base"></a>
+                  <p id="track-artist" class="mt-1 text-xs leading-relaxed wrap-anywhere text-cream/85 lg:text-sm"></p>
+                  <p class="mt-1.5 text-xs text-mint">right now on Spotify :3</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <nav id="links" aria-label="Find Nesi online" class="w-full scroll-mt-6">
+          <ul class="grid gap-3 lg:gap-3.5">
+            <li><a class="social-link" href="https://nesiexe.xyz">Nesi's Site</a></li>
+            <li><a class="social-link" href="https://x.com/nesiexe">Twitter</a></li>
+            <li><button id="discord-btn" type="button" class="social-link cursor-pointer font-medium" aria-label="Copy Discord username @nesiexe">Discord: @nesiexe</button></li>
+            <li><a class="social-link" href="https://t.me/NesiEXE">Telegram</a></li>
+            <li><a class="social-link" href="https://barq.app/@nesi">Barq!</a></li>
+            <li><a class="social-link" href="https://steamcommunity.com/id/NesiEXE/">Steam</a></li>
+            <li><a class="social-link" href="https://github.com/nesiexe">GitHub</a></li>
+          </ul>
+        </nav>
+      </main>
+      <footer class="pb-5 text-center text-sm font-semibold text-ink lg:text-base">:3 powered</footer>
+    </div>
+    <div id="toast" role="status" aria-live="polite" aria-atomic="true" data-visible="false" class="pointer-events-none fixed top-5 left-1/2 z-50 w-max max-w-[calc(100%-2.5rem)] -translate-x-1/2 -translate-y-24 rounded-xl border-2 border-ink bg-lavender px-5 py-3 text-center text-sm font-semibold text-ink opacity-0 shadow-[4px_4px_0_var(--color-ink)] transition duration-200 data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100 motion-reduce:transition-none sm:text-base"></div>
     <!--
        @@*=@@
        @     @@
