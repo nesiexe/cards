@@ -8,7 +8,7 @@ export default defineConfig({
     port: 4001,
     strictPort: true,
     proxy: {
-      "/api/now-playing": {
+      "/api/now-playing/nesi": {
         target: "https://api.nesiexe.xyz",
         changeOrigin: true,
       },

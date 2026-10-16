@@ -1,7 +1,7 @@
 const byId = (id) => document.getElementById(id);
 const musicEndpoint = import.meta.env.DEV
-  ? "/api/now-playing"
-  : "https://api.nesiexe.xyz/api/now-playing";
+  ? "/api/now-playing/nesi"
+  : "https://api.nesiexe.xyz/api/now-playing/nesi";
 const musicMessage = byId("music-message");
 const trackDetails = byId("track-details");
 const trackLink = byId("track-link");
