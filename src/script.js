@@ -115,7 +115,7 @@ profile.addEventListener("animationend", () => {
 });
 
 function updateAge() {
-  const birthDate = new Date(2006, 11, 9);
+  const birthDate = new Date(2006, 10, 9);
   const today = new Date();
   let age = today.getFullYear() - birthDate.getFullYear();
   if (today.getMonth() < birthDate.getMonth() ||
